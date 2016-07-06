@@ -31,12 +31,24 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-
+        it('have URLS for all feeds', function(){
+            for(var i=0;i < allFeeds.length; i++){
+                expect(allFeeds[i].url).toEqual(jasmine.any(String));
+                expect(allFeeds[i].url).toBeTruthy();
+            }
+        });
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+        it('have names for all feeds', function(){
+            for(var i=0;i < allFeeds.length; i++){
+                expect(allFeeds[i].name).toEqual(jasmine.any(String));
+                expect(allFeeds[i].name).toBeTruthy();
+            }
+        });
+
     });
 
 
