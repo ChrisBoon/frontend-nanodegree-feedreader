@@ -96,9 +96,8 @@ $(function() {
          * Test by calling loadFeed once and checking that it
          * has a DOM element with class of '.entry'.
          */
-        it('has one or more entries', function(done){
-            expect($('.entry')[0]).toBeTruthy();
-            done();
+        it('has one or more entries', function(){
+            expect($('.feed .entry')[0]).toBeTruthy();
         });
     });
 
