@@ -96,15 +96,12 @@ $(function() {
          * Test by calling loadFeed once and checking that it
          * has a DOM element with class of '.entry'.
          */
-        it('has one or more entries', function(done){
-            expect($('.entry')[0]).toBeTruthy();
-            done();
+        it('has one or more entries', function(){
+            expect($('.feed .entry')[0]).toBeTruthy();
         });
     });
 
     describe('New Feed Selection', function(done){
-
-        var firstFeed;
 
         /* test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
@@ -112,14 +109,20 @@ $(function() {
          */
         beforeEach(function(done){
             loadFeed(0, done);
-            firstFeed = $('.feed').html();
-            // console.log(firstFeed);
         });
 
         it('content changes when a new feed is loaded', function(done) {
-            var secondFeed;
+
+            var firstFeed,
+                secondFeed;
+
+            // console.log(firstFeed);
+
+            firstFeed = $('.feed').html();
+            // console.log(firstFeed);
 
             loadFeed(2, function() {
+
                 secondFeed = $('.feed').html();
                 // console.log(secondFeed);
                 expect(secondFeed).not.toEqual(firstFeed);
