@@ -103,22 +103,26 @@ $(function() {
 
     describe('New Feed Selection', function(done){
 
-        var firstFeed;
-
         /* test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Test by getting html from two loadFeed calls and comparing html.
          */
         beforeEach(function(done){
             loadFeed(0, done);
-            firstFeed = $('.feed').html();
-            // console.log(firstFeed);
         });
 
         it('content changes when a new feed is loaded', function(done) {
-            var secondFeed;
+
+            var firstFeed,
+                secondFeed;
+
+            // console.log(firstFeed);
+
+            firstFeed = $('.feed').html();
+            // console.log(firstFeed);
 
             loadFeed(2, function() {
+
                 secondFeed = $('.feed').html();
                 // console.log(secondFeed);
                 expect(secondFeed).not.toEqual(firstFeed);
