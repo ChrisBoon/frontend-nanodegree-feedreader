@@ -14,6 +14,7 @@ $(function() {
     * feeds definitions, the allFeeds variable in our application.
     */
     describe('RSS Feeds', function() {
+
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
          * empty. Experiment with this before you get started on
@@ -55,10 +56,14 @@ $(function() {
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
 
+        var body,
+            menuIcon;
+
         beforeEach(function() {
             body = document.body;
             menuIcon = $('.menu-icon-link');
         });
+
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
@@ -82,6 +87,11 @@ $(function() {
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
+    describe('Initial Entries', function(){
+
+        beforeEach(function(done){
+            loadFeed(0, done);
+        });
 
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
@@ -89,11 +99,38 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+        it('has one or more entries', function(done){
+            expect($('.entry')[0]).toBeTruthy();
+            done();
+        });
+    });
 
-    /* TODO: Write a new test suite named "New Feed Selection"
+    /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function(done){
+
+        var firstFeed;
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+         beforeEach(function(done){
+            loadFeed(0, done);
+            firstFeed = $('.feed').html();
+            // console.log(firstFeed);
+        });
+
+        it('content changes when a new feed is loaded', function(done) {
+            var secondFeed;
+
+            loadFeed(2, function() {
+                secondFeed = $('.feed').html();
+                // console.log(secondFeed);
+                expect(secondFeed).not.toEqual(firstFeed);
+                done();
+            });
+
+        });
+    });
+
 }());
